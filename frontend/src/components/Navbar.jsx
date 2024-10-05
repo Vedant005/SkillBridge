@@ -27,12 +27,12 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex md:items-center">
-            <Link
+            {/* <Link
               to="/"
               className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-500"
             >
               Home
-            </Link>
+            </Link> */}
             <Link
               to="/about"
               className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-500"
@@ -40,16 +40,16 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              to="/services"
+              to="/client"
               className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-500"
             >
-              Services
+              Find talent
             </Link>
             <Link
-              to="/projects"
+              to="/freelancer"
               className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-500"
             >
-              Projects
+              Find work
             </Link>
             <Link
               to="/contact"
