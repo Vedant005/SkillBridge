@@ -1,34 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function GigsPage() {
+  // const [gigData, setGigData] = useState(null);
+
+  // Fetch gig data from backend
+  useEffect(() => {
+    const fetchGigData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/job/alljobs"); // Change this URL to your backend API endpoint
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching gig data", error);
+      }
+    };
+
+    fetchGigData();
+  }, []);
+
+  // if (!gigData) {
+  //   return <div>Loading...</div>;
+  // }
+
   return (
-    <div>
-      <h3>When posted</h3>
-      <div>
-        <h1>Job title</h1>
-      </div>
-
-      <div>
-        <div>Ratings</div>
-        <div>Location</div>
-      </div>
-      <div>
-        <div className="flex">
-          <h1>Price details</h1>
-        </div>
-        <div>
-          <h3>Experience level</h3>
-        </div>
-        <div>
-          <h3>Estimated Budget</h3>
-        </div>
-      </div>
-
-      <div>
-        <h2>Job description</h2>
-      </div>
-
-      <div>Skills tags</div>
+    <div className="p-6 bg-white shadow-md rounded-lg space-y-4">
+      <h1>hello</h1>
     </div>
   );
 }
