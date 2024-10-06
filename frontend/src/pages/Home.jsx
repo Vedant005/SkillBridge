@@ -242,6 +242,16 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <div className="flex justify-center m-8 ">
+        <div className="flex-col text-center bg-red-950 rounded-2xl p-16 w-full max-w-6xl ">
+          <h1 className="text-white text-6xl my-5">
+            Freelance services at your fingertips
+          </h1>
+          <button className="bg-white p-3 rounded-md text-lg font-bold hover:shadow-2xl transition-shadow">
+            Join SKILLBRIDGE
+          </button>
+        </div>
+      </div>
 
       <div>
         <Footer />

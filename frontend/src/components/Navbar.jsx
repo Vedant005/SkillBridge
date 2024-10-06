@@ -40,13 +40,13 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              to="/client"
+              to="/talent"
               className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-500"
             >
               Find talent
             </Link>
             <Link
-              to="/freelancer"
+              to="/gigs"
               className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-500"
             >
               Find work
