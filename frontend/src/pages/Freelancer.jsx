@@ -1,8 +1,17 @@
 import React from "react";
-import ClientFilter from "../components/ClientFilter";
-
+import GigsFilter from "../components/GigsFilter";
+import GigsPage from "../components/GigsPage";
 function Freelancer() {
-  return <div>Freelancer</div>;
+  return (
+    <div className="flex  m-9">
+      <div>
+        <GigsFilter />
+      </div>
+      <div>
+        <GigsPage />
+      </div>
+    </div>
+  );
 }
 
 export default Freelancer;
