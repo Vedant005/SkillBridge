@@ -1,11 +1,12 @@
 import React from "react";
-import GigsFilter from "../components/GigsFilter";
+
 import Clientside from "../components/Clientside";
+import FreelancerFilter from "../components/FreelancerFilter";
 function Client() {
   return (
-    <div>
+    <div className="flex m-9 gap-10">
       <div>
-        <GigsFilter />
+        <FreelancerFilter />
       </div>
       <div>
         <Clientside />
