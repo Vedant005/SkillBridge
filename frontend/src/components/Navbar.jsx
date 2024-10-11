@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/authContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -16,13 +18,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/">
-              <img
-                className="h-8 w-auto"
-                src="/logo.svg" // Replace with your logo
-                alt="SkillBridge"
-              />
-            </Link>
+            <Link to="/">SKILLBRIDGE</Link>
           </div>
 
           {/* Desktop Menu */}
@@ -58,18 +54,32 @@ const Navbar = () => {
               Contact
             </Link>
             {/* Authentication Links */}
-            <Link
-              to="/login"
-              className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-blue-500 hover:bg-blue-600"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="ml-2 px-3 py-2 rounded-md text-sm font-medium text-blue-500 border border-blue-500 hover:bg-blue-50"
-            >
-              Register
-            </Link>
+            {isAuthenticated ? (
+              <button
+                onClick={() => {
+                  logout(); // Call logout function
+                  // Optionally navigate or show a message
+                }}
+                className="ml-4 px-3 py-2 rounded-md text-white bg-red-500 hover:bg-red-600"
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="ml-4 px-3 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="ml-2 px-3 py-2 rounded-md text-blue-500 border border-blue-500 hover:bg-blue-50"
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,18 +118,18 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              to="/services"
+              to="/talent"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500"
               onClick={() => setIsOpen(false)}
             >
-              Services
+              Find talent
             </Link>
             <Link
-              to="/projects"
+              to="/gigs"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500"
               onClick={() => setIsOpen(false)}
             >
-              Projects
+              Find work
             </Link>
             <Link
               to="/contact"
