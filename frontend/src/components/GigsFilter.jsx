@@ -1,58 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { FilterGigsContext } from "../contexts/filterGigsContext";
+function GigsFilter() {
+  const { filterState, filterDispatch } = useContext(FilterGigsContext);
 
-function GigsFilter({ onFilterChange }) {
-  const [hourlyRate, setHourlyRate] = useState([0, 100]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [price, setPrice] = useState([0, 1000]);
-  const [timezone, setTimezone] = useState("");
-  const [experienceLevel, setExperienceLevel] = useState("");
-
-  // Handle filter change
-  const handleFilterChange = () => {
-    onFilterChange({
-      hourlyRate,
-      title,
-      description,
-      category,
-      price,
-      timezone,
-      experienceLevel,
-    });
+  // Dispatch filter actions when input changes
+  const handleFilterChange = (field, value) => {
+    filterDispatch({ type: `SET_${field.toUpperCase()}`, payload: value });
   };
 
   return (
     <div className="p-6 bg-white shadow-lg rounded-lg space-y-6">
       {/* Hourly Rate Filter */}
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         <label className="text-lg font-medium mb-2">Hourly Rate ($):</label>
         <input
           type="range"
           min="0"
           max="100"
-          value={hourlyRate[1]}
-          onChange={(e) => {
-            setHourlyRate([0, e.target.value]);
-            handleFilterChange();
-          }}
+          value={filterState.hourlyRate ? filterState.hourlyRate[1] : 100}
+          onChange={(e) =>
+            handleFilterChange("hourlyRate", [0, e.target.value])
+          }
           className="w-full"
         />
         <div className="text-sm mt-2">
-          ${hourlyRate[0]} - ${hourlyRate[1]} per hour
+          ${filterState.hourlyRate ? filterState.hourlyRate[0] : 0} - $
+          {filterState.hourlyRate ? filterState.hourlyRate[1] : 100} per hour
         </div>
-      </div>
+      </div> */}
 
       {/* Title Filter */}
       <div className="flex flex-col">
         <label className="text-lg font-medium mb-2">Title:</label>
         <input
           type="text"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-            handleFilterChange();
-          }}
+          value={filterState.title || ""}
+          onChange={(e) => handleFilterChange("title", e.target.value)}
           className="border border-gray-300 rounded-lg py-2 px-4 focus:ring-2 focus:ring-emerald-400"
           placeholder="Enter gig title"
         />
@@ -63,11 +46,8 @@ function GigsFilter({ onFilterChange }) {
         <label className="text-lg font-medium mb-2">Description:</label>
         <input
           type="text"
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-            handleFilterChange();
-          }}
+          value={filterState.description || ""}
+          onChange={(e) => handleFilterChange("description", e.target.value)}
           className="border border-gray-300 rounded-lg py-2 px-4 focus:ring-2 focus:ring-emerald-400"
           placeholder="Enter gig description"
         />
@@ -77,11 +57,8 @@ function GigsFilter({ onFilterChange }) {
       <div className="flex flex-col">
         <label className="text-lg font-medium mb-2">Category:</label>
         <select
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-            handleFilterChange();
-          }}
+          value={filterState.category || ""}
+          onChange={(e) => handleFilterChange("category", e.target.value)}
           className="border border-gray-300 rounded-lg py-2 px-4 focus:ring-2 focus:ring-emerald-400"
         >
           <option value="">Select Category</option>
@@ -99,15 +76,13 @@ function GigsFilter({ onFilterChange }) {
           type="range"
           min="0"
           max="1000"
-          value={price[1]}
-          onChange={(e) => {
-            setPrice([0, e.target.value]);
-            handleFilterChange();
-          }}
+          value={filterState.price ? filterState.price[1] : 1000}
+          onChange={(e) => handleFilterChange("price", [0, e.target.value])}
           className="w-full"
         />
         <div className="text-sm mt-2">
-          ${price[0]} - ${price[1]} per project
+          ${filterState.price ? filterState.price[0] : 0} - $
+          {filterState.price ? filterState.price[1] : 1000} per project
         </div>
       </div>
 
@@ -115,11 +90,8 @@ function GigsFilter({ onFilterChange }) {
       <div className="flex flex-col">
         <label className="text-lg font-medium mb-2">Time Zone:</label>
         <select
-          value={timezone}
-          onChange={(e) => {
-            setTimezone(e.target.value);
-            handleFilterChange();
-          }}
+          value={filterState.timezone || ""}
+          onChange={(e) => handleFilterChange("timezone", e.target.value)}
           className="border border-gray-300 rounded-lg py-2 px-4 focus:ring-2 focus:ring-emerald-400"
         >
           <option value="">Select Time Zone</option>
@@ -134,11 +106,10 @@ function GigsFilter({ onFilterChange }) {
       <div className="flex flex-col">
         <label className="text-lg font-medium mb-2">Experience Level:</label>
         <select
-          value={experienceLevel}
-          onChange={(e) => {
-            setExperienceLevel(e.target.value);
-            handleFilterChange();
-          }}
+          value={filterState.experienceLevel || ""}
+          onChange={(e) =>
+            handleFilterChange("experienceLevel", e.target.value)
+          }
           className="border border-gray-300 rounded-lg py-2 px-4 focus:ring-2 focus:ring-emerald-400"
         >
           <option value="">Select Experience Level</option>
